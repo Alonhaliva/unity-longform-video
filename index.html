@@ -185,12 +185,14 @@
   .callout .big { font-size: 22px; line-height: 1; }
 
   /* column chart (roas growth) */
-  .cols { display: flex; align-items: flex-end; justify-content: center; gap: 64px; height: 220px; margin: 18px 0 6px; position: relative; }
+  .cols { display: flex; align-items: flex-end; justify-content: center; gap: 72px; height: 240px; margin: 18px 0 6px; position: relative; }
+  .cgroup { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .cgroup .pair { display: flex; gap: 12px; align-items: flex-end; }
   .col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-  .col .colval { font-size: 22px; font-weight: 900; }
-  .col .bar { width: 84px; background: var(--series-long); border-radius: 8px 8px 0 0; }
-  .col.dim .bar { opacity: .45; }
-  .col .colname { font-size: 13px; font-weight: 700; color: var(--text-secondary); }
+  .col .colval { font-size: 17px; font-weight: 900; }
+  .col .bar { width: 60px; background: var(--series-long); border-radius: 8px 8px 0 0; }
+  .col .bar.std { background: var(--series-std); }
+  .colname { font-size: 13px; font-weight: 700; color: var(--text-secondary); }
   .cols .grow {
     position: absolute; left: 50%; transform: translateX(-50%); top: 34px;
     font-size: 14px; font-weight: 900; color: var(--accent-ink);
@@ -359,7 +361,7 @@
 
     <div class="card">
       <div class="chart-title">Engagement by video length</div>
-      <div class="chart-sub">All Unity advertisers · 60-day window (30 May to 29 Jul 2026)</div>
+      <div class="chart-sub">Advertisers enabled for long-form video · 60-day window (30 May to 29 Jul 2026)</div>
       <div class="legend">
         <span class="k-long"><i></i>Long (61 to 120s)</span>
         <span class="k-std"><i></i>Short (up to 60s)</span>
@@ -425,8 +427,9 @@
           </div>
         </div>
       </div>
-      <p class="note">Skippers leave at the same second whether the video is 30s or 120s. So the extra
-      minute adds zero skips, it only adds watch time for everyone who stays.</p>
+      <p class="note">Skippers leave at about the same second whether the video is 30s or 120s.
+      Skip-second data is a 10% sample of 1.6 billion events, so read it directionally: runtime is not
+      what drives the skip, the opening seconds are.</p>
     </div>
 
     <div class="callout"><span class="big">🪝</span><span>Win the first 10 seconds and the rest of the video works for you.
@@ -533,7 +536,7 @@
       </div>
       <div class="tile">
         <div class="value">2.6%</div>
-        <div class="label">View-to-install rate</div>
+        <div class="label">Install rate per video start</div>
       </div>
       <div class="tile">
         <div class="value">$1.17</div>
@@ -550,32 +553,43 @@
     <div class="kicker">4 · Payoff</div>
     <h2>The value shows up later, and it's worth the wait</h2>
     <p class="bottomline">Long video converts fewer people on day one, but the ones who install spend more over time.
-    Judge it on Day 28, not Day 7.</p>
+    Short video still leads on raw return. The gap is what closes, so judge long-form on Day 28, not Day 7.</p>
 
     <div class="card">
-      <div class="chart-title">Long video ROAS by measurement day</div>
-      <div class="chart-sub">All Unity advertisers, long video · 60-day window</div>
+      <div class="chart-title">ROAS by measurement day, long vs short</div>
+      <div class="chart-sub">Advertisers enabled for long-form video, ROAS campaigns · 60-day window</div>
+      <div class="legend">
+        <span class="k-long"><i></i>Long (61 to 120s)</span>
+        <span class="k-std"><i></i>Short (up to 60s)</span>
+      </div>
       <div class="cols">
-        <div class="grow">nearly 2x</div>
-        <div class="col dim">
-          <div class="colval">12%</div>
-          <div class="bar" style="height:88px"></div>
+        <div class="grow">long grows 2.0x, short 1.8x</div>
+        <div class="cgroup">
+          <div class="pair">
+            <div class="col"><div class="colval">12%</div><div class="bar" style="height:55px"></div></div>
+            <div class="col"><div class="colval">21%</div><div class="bar std" style="height:96px"></div></div>
+          </div>
           <div class="colname">Day 7</div>
         </div>
-        <div class="col">
-          <div class="colval">23%</div>
-          <div class="bar" style="height:168px"></div>
+        <div class="cgroup">
+          <div class="pair">
+            <div class="col"><div class="colval">23%</div><div class="bar" style="height:107px"></div></div>
+            <div class="col"><div class="colval">37%</div><div class="bar std" style="height:168px"></div></div>
+          </div>
           <div class="colname">Day 28</div>
         </div>
       </div>
       <div class="cols-baseline"></div>
+      <p class="note">Short is still ahead on the raw numbers at both marks. The story is the slope: long-form
+      goes from 0.57x of short at Day 7 to 0.64x at Day 28 and keeps building. Day 28 is the fair horizon for
+      judging long-form, not the day it overtakes short.</p>
     </div>
   </section>
 
   <section>
     <div class="kicker">5 · Format</div>
-    <h2>Video + End Card is the winning combo <span class="winner">🏆 beats short video</span></h2>
-    <p class="bottomline">Pair the long video with an end card and it already beats short video on ROAS.
+    <h2>Video + End Card is the combo to start with <span class="winner">holds its own vs short video</span></h2>
+    <p class="bottomline">Pair the long video with an end card and ROAS holds its own against short video.
     Playables push install costs up, save those for round two.</p>
 
     <div class="card">
@@ -616,7 +630,7 @@
       <div class="rec">
         <div class="num">2</div>
         <h3>Video + End Card</h3>
-        <p>The format where long video already wins. Playables come later.</p>
+        <p>The format where long video already holds its own. Playables come later.</p>
       </div>
       <div class="rec">
         <div class="num">3</div>
